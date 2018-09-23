@@ -6,3 +6,7 @@ print(a)
 
 b = a.numpy()
 print(b)
+
+a.add_(1)
+print(a)
+print(b)

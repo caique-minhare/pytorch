@@ -3,3 +3,6 @@ import torch
 
 a = torch.ones(5)
 print(a)
+
+b = a.numpy()
+print(b)

@@ -21,7 +21,7 @@ class Net(nn.Module):
 
     def forward(self,x):
         x = F.max_pool2d(F.relu(self.conv1(x)), (2,2))
-        x = F.max_pool2d(F.relu(self.con2conv2(x)), 2)
+        x = F.max_pool2d(F.relu(self.conv2(x)), 2)
         x = x.view(-1, self.num_flat_features(x))
         x = F.relu(self.fc1(x))
         x = F.relu(self.fc2(x))
@@ -36,5 +36,11 @@ class Net(nn.Module):
         return num_features
 
 net = Net()
-print(net)
-print( list(net.parameters()) )
+input = torch.randn(1,1,32,32)
+output = net(input)
+target = torch.randn(10)
+target = target.view(1, -1)
+criterion = nn.MSELoss()
+
+loss = criterion(output, target)
+print(loss)
